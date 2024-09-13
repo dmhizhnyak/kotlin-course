@@ -5,61 +5,71 @@ package com.dm.kotlincourse.lesson3
 Название мероприятия*/
 
 //Дата проведения
-var eventDate: String = "12.10.2024"
+val eventDate: String = "12.10.2024"
 //Место проведения
 var eventLocation: String = "Moskow"
 //Подробный бюджет мероприятия, включая расходы на оборудование, кейтеринг и другие операционные расходы.
-
+var eventBudget: String = "50000"
 //Количество участников
-var participants: Int = 214
+var participants: Int = 0
+    get () = field
+    private set(value) {field=value}
 //Длительность хакатона
-var eventDuration: Int = 120
+var eventDuration: Long = 8*60*60
 //Контактная информация и условия соглашений с поставщиками пищи, оборудования и других услуг.
-var contactInfo: String = ""
+private lateinit var contactInfo: String
 //Текущее состояние хакатона (статус)
-var status: String = ""
+var status: String = "Не начат"
 //Список спонсоров
-var sponsorList: String = ""
+val sponsorList: String = ""
 //Бюджет мероприятия
 val budget: Double = 2500.0
 //Текущий уровень доступа к интернету
-var internetStatus: String = "Good"
+var internetStatus: Int = 5
 //Информация о транспортировке оборудования, распределении ресурсов и координации между различными командами поддержки.
-var equipmentTrasportationInf: String = ""
+private var equipmentTrasportationInf: String = ""
 //Количество команд
-var teamCount: Int = 12
+var teamCount: Int = 0
 //Перечень задач
-var taskList: String = ""
+val taskList: String = ""
 //План эвакуации
-var evacuationPlan: String = ""
+val evacuationPlan: String = ""
 //Список доступного оборудования
-var equipmentList: String = ""
+var equipmentList: String = "10"
 //Список свободного оборудования
-var equiomentFreeList: String = ""
+var equiomentFreeList: String = "10"
 //График питания участников (зависит от поставщика питания, определяемого за неделю до начала)
-var mealPlan: String = ""
+lateinit var mealPlan: String
 //План мероприятий на случай сбоев
+var planError: String = ""
 //Список экспертов и жюри
+var listExperts: String = ""
 //Методы и процедуры для сбора отзывов от участников и гостей, включая анонимные опросы и интервью.
+private var methodsReport: String = ""
 //Политика конфиденциальности
+var politiceConfiditiation: String = ""
 //Приватные отзывы (фидбэк) участников и зрителей для анализа проблем.
+private val feedback: String by lazy {""}
 //Текущая температура в помещении
+
 //Мониторинг и анализ производительности сетевого оборудования и интернет-соединения.
+var monitorEthernet: String = ""
 //Уровень освещения
+var lightStatus: Int = 2
 //Лог событий мероприятия
+private var log: String = ""
 //Доступность медицинской помощи
+var emergency: Boolean = True
 //Планы и процедуры для обеспечения безопасности мероприятия, включая планы эвакуации и протоколы чрезвычайных ситуаций.
+var safety: String = ""
 //Регистрационный номер мероприятия
-const val registrationNumber: Int = 2838623
+val registrationNumber: Int = 2838623
 //Максимально допустимый уровень шума в помещении хакатона.
 var noiseLevel: Int = 100
 //Индикатор превышения уровня шума в помещениях
-var indicatorNoiseLevel: Int = 0
-    get() = field
-    set(value) {
-        if (value>=100) field=value
-    }
+var indicatorNoiseLevel: Boolean = False
 //Формат мероприятия (зависит от геополитической обстановки)
+var format: String = ""
 //Количество свободных мест для отдыха (например, кресел или диванов), сеттер валидирует, чтобы количество не было меньше нуля.
 var freeSeats: Int = 0
     get() = field
@@ -78,7 +88,10 @@ lateinit var report: String
 const val emergencyContactInfo: Int = 911
 //Особые условия для участников с ограниченными возможностями
 //Общее настроение участников (определяется опросами)
+val mood: String by lazy {""}
 //Подробный план хакатона, включающий время и содержание каждого сегмента, инициализируется непосредственно перед началом мероприятия.
+var planHackaton: String =""
+lateinit var eventPlan: String
 //Имя знаменитого специального гостя, которое будет объявлено за день до мероприятия.
 lateinit var spesialGuestName: String
 //Максимальное количество людей, которое может вместить место проведения.
