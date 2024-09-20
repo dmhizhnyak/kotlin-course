@@ -18,11 +18,11 @@ fun taskTwo (costDelivery: Double?) {
 fun taskThree (atmoHeight: Double?, density: Double?) {
     val a = atmoHeight ?: (throw Exception ("Нет показателей высоты атмосферного давления"))
     val b = density ?: (throw Exception ("Нет показателей плотности воздуха"))
-    val atmoPressure = atmoHeight * density
-    println(atmoPressure)
+    println("Высота атмосферы: $atmoHeight")
+    println("Воздушное давление: $density")
 }
 fun main () {
     taskOne(4.0, null)
     taskTwo(null)
-    taskThree(null, 5.0)
+    taskThree(14.0, null)
 }
