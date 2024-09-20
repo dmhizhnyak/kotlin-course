@@ -27,7 +27,7 @@ val typeEleven: Double = -0.001
 //"OpenAI"
 val typeTwelve: String = "OpenAI"
 //“true”
-val type13: String = “true” // Ошибка ковычек
+val type13: String = "“true”" // Ошибка ковычек
 //'9'
 val type14: Char = '9'
 //2048
@@ -57,9 +57,9 @@ val type26: String = "SpaceX"
 //true
 val type27: Boolean = true
 //“🤯”
-val type28 = “🤯”
+    //val type28 = “🤯”
 //‘65535’
-val type29 = ‘65535’
+//val type29 = ‘65535’
 //72057594037927935L
 val type30: Long = 72057594037927935L
 //2.71828f
