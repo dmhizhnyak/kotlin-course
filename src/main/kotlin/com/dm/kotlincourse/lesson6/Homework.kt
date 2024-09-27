@@ -3,7 +3,7 @@ package com.dm.kotlincourse.lesson6
 fun main () {
     season(3)
     calculatingAgeOfADog(3.5)
-    typeOfTranssport(77.9)
+    typeOfTransport(77.9)
     calculationOfBonusPoints(1800)
     typeDocument("xls")
     convertTemperature(700, 'F')
@@ -16,13 +16,12 @@ fun main () {
 
 fun season (month: Int) {
     when (month) {
+        !in 1..12 -> println("Не верно указан месяц")
         in 1..2, 12 -> println ("winter")
         in 3..5 -> println ("spring")
         in 6..8 -> println ("summer")
         in 9..11 -> println ("autumn")
-        else -> {
-            println("Неверные данные")
-        }
+        else -> println("Неверные данные")
     }
 }
 /*----------------------------------------------------------------------------------*/
@@ -45,7 +44,7 @@ fun calculatingAgeOfADog (ageDog: Double) {
 //Задание 3: "Определение Вида Транспорта"
 //Контекст: Напишите функцию, которая определяет, какой вид транспорта лучше использовать, исходя из длины маршрута. Если маршрут до 1 км - "пешком", до 5 км - "велосипед", иначе - "автотранспорт".
 
-fun typeOfTranssport (length: Double) {
+fun typeOfTransport (length: Double) {
     when {
         length in 0.0..0.9 -> println("Пешком")
         length in 1.0..4.9 -> println("Велосипед")
@@ -57,7 +56,9 @@ fun typeOfTranssport (length: Double) {
 //Контекст: Клиенты интернет-магазина получают бонусные баллы за покупки. Напишите функцию, которая принимает сумму покупки и возвращает количество бонусных баллов: 2 балла за каждые 100 рублей при сумме покупки до 1000 рублей и 5 баллов за каждые 100 рублей при сумме свыше этого.
 
 fun calculationOfBonusPoints (purchaseAmount: Int) {
-    if (purchaseAmount<1000) {
+    return if (purchaseAmount<0) {
+        throw Exception("Ошибка")
+    } else if (purchaseAmount<1000) {
         val bonusPoints = purchaseAmount/100 * 2
         println("$bonusPoints")
     } else if (purchaseAmount>=1000) {
@@ -72,11 +73,11 @@ fun calculationOfBonusPoints (purchaseAmount: Int) {
 //Контекст: В системе хранения документов каждый файл имеет расширение. Напишите функцию, которая на основе расширения файла возвращает его тип: "Текстовый документ", "Изображение", "Таблица" или "Неизвестный тип".
 
 fun typeDocument (doc: String) {
-    when (doc) {
-        "txt", "doc", "rtf" -> println("Текстовый документ")
-        "jpg", "bmp", "png" -> println("Изображение")
-        "xls", "xlsm", "xlt" -> println("Таблица")
-        else -> println("Неизвестный тип")
+    val finalTypeDocument: String = when (doc) {
+        "txt", "doc", "rtf" -> "Текстовый документ"
+        "jpg", "bmp", "png" -> "Изображение"
+        "xls", "xlsm", "xlt" -> "Таблица"
+        else -> "Неизвестный тип"
     }
 }
 /*----------------------------------------------------------------------------------*/
@@ -88,11 +89,11 @@ fun convertTemperature (degree: Int, celsiusOrFahrenheit: Char) {
     if (celsiusOrFahrenheit == 'F') {
         val resault: Double
         resault = (degree-32)/1.8
-        println("$resault")
+        println("$resault C")
     } else if (celsiusOrFahrenheit == 'C') {
         val resault: Double
         resault = degree * 1.8 + 32
-        println("$resault")
+        println("$resault F")
     } else {
         println("Неверные данные")
     }
@@ -110,8 +111,10 @@ fun clothesToWeather (degree: Int) {
     }
 }
 /*----------------------------------------------------------------------------------*/
-//Задание 8: "Выбор Фильма по Возрасту"
-//Контекст: Кинотеатр предлагает фильмы разных возрастных категорий. Напишите функцию, которая принимает возраст зрителя и возвращает доступные для него категории фильмов: "детские", "подростковые", "18+".
+/*
+Задание 8: "Выбор Фильма по Возрасту"
+Контекст: Кинотеатр предлагает фильмы разных возрастных категорий. Напишите функцию, которая принимает возраст зрителя и возвращает доступные для него категории фильмов: "детские", "подростковые", "18+".
+*/
 
 fun changeFilm (age: Int) {
     when  {
