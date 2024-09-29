@@ -1,7 +1,5 @@
 package com.dm.kotlincourse.lesson8
 
-import kotlin.time.times
-
 fun main () {
     replacement("Это невозможно выполнить за один день")
     addToEnd("Я не уверен в успехе этого проекта")
