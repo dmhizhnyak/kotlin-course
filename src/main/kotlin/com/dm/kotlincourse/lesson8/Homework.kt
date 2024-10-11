@@ -1,5 +1,7 @@
 package com.dm.kotlincourse.lesson8
 
+import kotlin.math.abs
+
 fun main () {
     replacement("Это невозможно выполнить за один день")
     addToEnd("Я не уверен в успехе этого проекта")
@@ -12,8 +14,8 @@ fun main () {
     extractFileName("C:/Пользователи/Документы/Папка/report.txt")
     abbreviation("Объектно-ориентированное программирование")
     upperString("Написать метод, который преобразует строку из нескольких слов в строку, где каждое слово начинается с заглавной буквы а все остальные - строчные.")
-//    encrypt("Hello") В работе
-    table(1..100)
+    encrypt("Hello")
+//    table(-1,-40,-1,-40)
 }
 /*-------------Создайте функцию, которая будет анализировать входящие фразы и применять к ним различные преобразования, делая текст более ироничным или забавным. Функция должна уметь распознавать ключевые слова или условия и соответственно изменять фразу.---------------------------------*/
 /*Если фраза содержит слово "невозможно":
@@ -54,16 +56,13 @@ fun oneWord (string: String) {
 /*Задание 1: Извлечение Даты из Строки Лога. Используй indexOf или split для получения правой части сообщения.*/
 fun extraction (string: String) {
     val newString = string.split(" -> ")[1]
-    val date = newString.split(" ")[0]
-    val time = newString.split(" ")[1]
-    println("Дата входа $date, время: $time")
+    println("Дата входа ${newString.split(" ")[0]}, время: ${newString.split(" ")[1]}")
 }
 /*Задание 2: Маскирование Личных Данных
 Описание: Дана строка с номером кредитной карты "4539 1488 0343 6467". Замаскируйте все цифры, кроме последних четырех, символами "*".*/
 fun mask (string: String) {
     if ((string.split(" ").size == 4) && (string.length == 19)) {
-        val listString = string.split(" ")[3]
-        println("XXXX XXXX XXXX $listString")
+        println("XXXX XXXX XXXX ${string.split(" ")[3]}")
     } else println("Не верно введен номер карты")
 }
 /*Задание 3: Форматирование Адреса Электронной Почты. Используй replace
@@ -102,34 +101,45 @@ fun upperString (string: String) {
 //fun encoder () {
 //
 //}
-//fun encrypt (string: String) {
-//    var encrypt = ""
-//    val newString = string.split(" ")
-//        for (i in newString) {
-//            for (item in 0..i.length) {
-//                var a = item
-////                ++a
-//                encrypt += "${i.replace(oldValue = i[1].toString(), newValue = i[0].toString(), ignoreCase = true)} "
-//            }
-//        }
-//    println(encrypt)
-//}
-//fun decrypt (string: String) {
-//
-//}
+fun encrypt(string: String) {
+    var encrypt = ""
+    val newString = string.split(" ")
+    for (i in newString) {
+        for (item in i) {
+            var a = i.indexOf(item)
+            a++
+            val b = i[a]
+            println(a)
+            encrypt += i.replace(oldChar = b, newChar = b)
+        }
+    }
+    println(encrypt)
+}
+fun decrypt (string: String) {
+
+}
 
 /*Вывести таблицу умножения в консоль так, чтобы были ровные строки и столбцы. В заголовках столбцов и строк - числа для перемножения. В перекрестии - результат умножения. Каждый столбец должен быть выровнен по правому краю.
 Для печати результата в той же строке использовать print()
 Для перехода на следующую строку использовать println()
 Для выравнивания использовать функции форматирования строк с шаблоном (%s)*/
 
-fun table (range: IntRange) {
-    for (i in range) {
-        for (a in range) {
-            when (range) {
-                1..10 -> print("${String.format("%4s", i * a)} ")
-                1..100 -> print("${String.format("%5s", i * a)} ")
+fun table (x1: Int, x2: Int, y1:Int, y2: Int) {
+    for (i in x1..x2) {
+        for (a in y1..y2) {
+            when {
+                (x1 > 0 && x2 <= 10) && (y1 > 0 && y2 <= 10) -> print("${String.format("%2s", i * a)} ")
+                (x1 > 0 && x2 < 100) && (y1 > 0 && y2 < 100) -> print("${String.format("%3s", i * a)} ")
+                (x1 >= 100 && x2 < 1000) && (y1 >= 1000 && y2 < 1000) -> print("${String.format("%4s", i * a)} ")
             }
+            print(" ")
+        }
+        println()
+    }
+    for (i in x1 downTo x2) {
+        for (a in y1 downTo y2) {
+            print("${String.format("%4s", i * a)} ")
+            print(" ")
         }
         println()
     }
